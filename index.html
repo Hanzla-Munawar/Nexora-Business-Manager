@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131d">
+  <title>Nexora Business Manager — Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Nexora home">
+        <span class="brand-mark">N</span>
+        <span><b>NEXORA</b><small>BUSINESS SUITE</small></span>
+      </a>
+      <div class="workspace">
+        <span class="workspace-icon">NB</span>
+        <span><b>My Business</b><small>Demo workspace</small></span>
+        <span class="chevron">⌄</span>
+      </div>
+      <nav class="nav">
+        <p class="nav-label">WORKSPACE</p>
+        <button class="nav-link active" data-view="overview"><span>▦</span> Overview</button>
+        <button class="nav-link" data-view="transactions"><span>↕</span> Transactions</button>
+        <button class="nav-link" data-view="reports"><span>▤</span> Reports</button>
+        <button class="nav-link" data-view="customers"><span>♙</span> Customers</button>
+      </nav>
+      <div class="sidebar-note">
+        <div class="note-icon">✦</div>
+        <b>Make better decisions</b>
+        <p>Keep sales and expenses organized in one simple workspace.</p>
+        <button id="quickAdd" class="outline-btn">＋ Add transaction</button>
+      </div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Demo mode <span class="version">v1.0</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="crumb"><span>Workspace</span><b>/</b><strong id="crumbTitle">Overview</strong></div>
+        <div class="top-actions">
+          <span class="demo-pill"><i></i> LIVE DEMO</span>
+          <button class="avatar" title="Demo profile">HM</button>
+        </div>
+      </header>
+
+      <section class="page-head">
+        <div>
+          <p class="eyebrow" id="dateLabel">BUSINESS SNAPSHOT</p>
+          <h1 id="pageTitle">Good business starts with clarity.</h1>
+          <p class="subhead" id="pageSubtitle">Here’s how your business is performing. All amounts are in PKR.</p>
+        </div>
+        <div class="head-actions">
+          <label class="month-select">Period
+            <select id="periodSelect" aria-label="Choose report period">
+              <option value="month">This month</option>
+              <option value="all">All time</option>
+              <option value="today">Today</option>
+            </select>
+          </label>
+          <button class="primary-btn" id="addBtn">＋ <span>Add transaction</span></button>
+        </div>
+      </section>
+
+      <div class="demo-alert"><span>ⓘ</span><div><b>Portfolio demo</b><span>Sample figures are included. New entries are saved only in this browser on this device — no online account or cloud sync.</span></div><button id="dismissAlert" aria-label="Dismiss notice">×</button></div>
+
+      <section class="stats-grid" id="statsGrid">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total income</span><span class="stat-icon income-icon">↗</span></div>
+          <div class="stat-value" id="incomeTotal">Rs 0</div><div class="stat-foot"><span class="tiny-dot green"></span><span id="incomeFoot">Sales and other income</span></div>
+          <div class="mini-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Total expenses</span><span class="stat-icon expense-icon">↘</span></div>
+          <div class="stat-value" id="expenseTotal">Rs 0</div><div class="stat-foot"><span class="tiny-dot orange"></span><span>Business costs recorded</span></div>
+          <div class="mini-bars warm" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Net profit</span><span class="stat-icon profit-icon">✦</span></div>
+          <div class="stat-value" id="profitTotal">Rs 0</div><div class="stat-foot"><span class="tiny-dot blue"></span><span id="marginFoot">Income minus expenses</span></div>
+          <div class="profit-track"><span id="profitTrack"></span></div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Transactions</span><span class="stat-icon count-icon">⌁</span></div>
+          <div class="stat-value" id="transactionCount">0</div><div class="stat-foot"><span class="tiny-dot purple"></span><span>Income + expense records</span></div>
+          <div class="count-bottom"><span id="incomeCount">0 income</span><span id="expenseCount">0 expenses</span></div>
+        </article>
+      </section>
+
+      <section class="content-grid" id="overviewContent">
+        <article class="panel chart-panel">
+          <div class="panel-head"><div><h2>Cash flow overview</h2><p>Income vs expenses over the last 6 months</p></div><span class="chart-legend"><i class="legend-income"></i> Income <i class="legend-expense"></i> Expenses</span></div>
+          <div class="chart-wrap"><div class="y-labels"><span>20k</span><span>15k</span><span>10k</span><span>5k</span><span>0</span></div><div class="chart" id="chart"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="chart-columns" id="chartColumns"></div></div></div>
+          <div class="chart-foot"><span><i class="legend-income"></i> Income</span><b id="chartIncome">Rs 0</b><span><i class="legend-expense"></i> Expenses</span><b id="chartExpense">Rs 0</b></div>
+        </article>
+        <article class="panel breakdown-panel">
+          <div class="panel-head"><div><h2>Expense breakdown</h2><p>Where your money goes</p></div><button class="text-btn" data-go="transactions">View all ↗</button></div>
+          <div class="donut-area"><div class="donut" id="donut"><div><b id="donutTotal">Rs 0</b><small>Total spend</small></div></div></div>
+          <div class="category-list" id="categoryList"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel" id="recentPanel">
+        <div class="panel-head table-head"><div><h2 id="tableTitle">Recent transactions</h2><p id="tableSubtitle">A quick look at the latest activity</p></div><div class="table-actions"><div class="search-box"><span>⌕</span><input id="searchInput" placeholder="Search transactions..." aria-label="Search transactions"></div><button class="text-btn" data-go="transactions">View all →</button></div></div>
+        <div class="filter-row" id="filterRow"><button class="filter-chip selected" data-filter="all">All activity</button><button class="filter-chip" data-filter="income">Income</button><button class="filter-chip" data-filter="expense">Expenses</button></div>
+        <div class="table-scroll"><table><thead><tr><th>DESCRIPTION</th><th>CATEGORY</th><th>DATE</th><th>TYPE</th><th class="align-right">AMOUNT</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table></div>
+        <div class="empty-state" id="emptyState" hidden><span>⌁</span><b>No transactions found</b><p>Try another search or add your first record.</p><button class="primary-btn" id="emptyAddBtn">＋ Add transaction</button></div>
+        <div class="table-footer"><span id="showingText">Showing 0 transactions</span><button class="export-btn" id="exportBtn">⇩ Export CSV</button></div>
+      </section>
+
+      <section class="panel customers-panel" id="customersPanel" hidden>
+        <div class="panel-head"><div><h2>Customer directory</h2><p>Customers found in your transaction records</p></div></div>
+        <div class="table-scroll"><table><thead><tr><th>CUSTOMER / SOURCE</th><th>TRANSACTIONS</th><th>TOTAL INCOME</th><th>LAST ACTIVITY</th></tr></thead><tbody id="customerRows"></tbody></table></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 Nexora Digital</span><span>Built for clarity <b>•</b> Portfolio demonstration</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head"><div><p class="eyebrow">BUSINESS RECORD</p><h2 id="modalTitle">Add transaction</h2></div><button class="close-btn" id="closeModal" aria-label="Close dialog">×</button></div>
+      <form id="transactionForm">
+        <div class="type-switch"><button type="button" class="type-option active" data-type="income">↗ Record income</button><button type="button" class="type-option" data-type="expense">↘ Record expense</button></div>
+        <input type="hidden" id="formType" value="income">
+        <div class="form-grid">
+          <label class="full">Description <span>*</span><input id="description" required maxlength="80" placeholder="e.g. Website project payment"></label>
+          <label>Amount (PKR) <span>*</span><input id="amount" required type="number" min="1" max="999999999" step="1" placeholder="5000"></label>
+          <label>Date <span>*</span><input id="transactionDate" required type="date"></label>
+          <label>Category <span>*</span><select id="category" required></select></label>
+          <label>Customer / paid to<input id="person" maxlength="80" placeholder="e.g. Ahmed Traders"></label>
+          <label class="full">Notes (optional)<textarea id="notes" rows="3" maxlength="250" placeholder="Add a short note for your records..."></textarea></label>
+        </div>
+        <div class="form-tip"><span>ⓘ</span> Demo data stays in this browser only. Export a CSV backup regularly.</div>
+        <div class="modal-actions"><button type="button" class="cancel-btn" id="cancelModal">Cancel</button><button type="submit" class="primary-btn">Save transaction</button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
